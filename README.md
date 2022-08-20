@@ -4,6 +4,7 @@ A simple game developed using Godot engine!
 # Running on linux
 ```bash
 chmod +x ./MEow-1.0.x86_64
+./MEow-1.0.x86_64
 ```
 # My goal with this project
 This project will be my template for my other projects. Coded some cool stuff in it.
