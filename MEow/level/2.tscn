@@ -1,0 +1,61 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://scenes/fish.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scenes/spiketile.tscn" type="PackedScene" id=2]
+[ext_resource path="res://script/gamelogic.gd" type="Script" id=3]
+[ext_resource path="res://scenes/cat.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scenes/groundtile.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scenes/hud.tscn" type="PackedScene" id=6]
+
+[node name="2" type="Node2D"]
+script = ExtResource( 3 )
+
+[node name="cat" parent="." instance=ExtResource( 4 )]
+position = Vector2( 248, 376 )
+catspeed = 90
+gravity = 15
+jumpp = -250
+
+[node name="hud" parent="." instance=ExtResource( 6 )]
+
+[node name="Node" type="Node" parent="."]
+
+[node name="fish" parent="Node" instance=ExtResource( 1 )]
+position = Vector2( 288, 376 )
+
+[node name="fish2" parent="Node" instance=ExtResource( 1 )]
+position = Vector2( 264, 264 )
+
+[node name="fish3" parent="Node" instance=ExtResource( 1 )]
+position = Vector2( 184, 328 )
+
+[node name="fish4" parent="Node" instance=ExtResource( 1 )]
+position = Vector2( 464, 448 )
+
+[node name="fish5" parent="Node" instance=ExtResource( 1 )]
+position = Vector2( 448, 328 )
+
+[node name="pausechecknode" type="Node" parent="."]
+
+[node name="levelcompletedchecknode" type="Node" parent="."]
+
+[node name="floor" parent="." instance=ExtResource( 5 )]
+tile_data = PoolIntArray( 1114128, 0, 0, 1114129, 0, 0, 1114130, 0, 0, 1114131, 0, 0, 1179667, 0, 0, 1179668, 0, 0, 1245204, 0, 0, 1245205, 0, 0, 1310741, 0, 0, 1310742, 0, 0, 1376264, 0, 0, 1376265, 0, 0, 1376267, 0, 0, 1376268, 0, 0, 1441801, 0, 0, 1441802, 0, 0, 1441803, 0, 0, 1441816, 0, 0, 1441817, 0, 0, 1441818, 0, 0, 1441819, 0, 0, 1441820, 0, 0, 1572893, 0, 0, 1572894, 0, 0, 1572895, 0, 0, 1572896, 0, 0, 1638412, 0, 0, 1638413, 0, 0, 1638414, 0, 0, 1638415, 0, 0, 1638416, 0, 0, 1638420, 0, 0, 1638421, 0, 0, 1638422, 0, 0, 1703952, 0, 0, 1703953, 0, 0, 1703954, 0, 0, 1703955, 0, 0, 1703956, 0, 0, 1703970, 0, 0, 1769504, 0, 0, 1769505, 0, 0, 1769506, 0, 0, 1900568, 0, 0, 1900571, 0, 0, 1900572, 0, 0, 1900573, 0, 0, 1900574, 0, 0, 1966104, 0, 0, 1966105, 0, 0, 1966106, 0, 0, 1966107, 0, 0 )
+
+[node name="tilemapcollision" type="Area2D" parent="."]
+
+[node name="spike" parent="tilemapcollision" instance=ExtResource( 2 )]
+collision_use_parent = true
+tile_data = PoolIntArray( 1376266, 0, 0, 1638417, 0, 0, 1638418, 0, 0, 1638419, 0, 0, 1900569, 0, 0, 1900570, 0, 0 )
+
+[connection signal="body_entered" from="Node/fish" to="Node/fish" method="_on_fish_body_entered"]
+[connection signal="fish_eaten" from="Node/fish" to="." method="_on_fish_fish_eaten"]
+[connection signal="body_entered" from="Node/fish2" to="Node/fish2" method="_on_fish_body_entered"]
+[connection signal="fish_eaten" from="Node/fish2" to="." method="_on_fish_fish_eaten"]
+[connection signal="body_entered" from="Node/fish3" to="Node/fish3" method="_on_fish_body_entered"]
+[connection signal="fish_eaten" from="Node/fish3" to="." method="_on_fish_fish_eaten"]
+[connection signal="body_entered" from="Node/fish4" to="Node/fish4" method="_on_fish_body_entered"]
+[connection signal="fish_eaten" from="Node/fish4" to="." method="_on_fish_fish_eaten"]
+[connection signal="body_entered" from="Node/fish5" to="Node/fish5" method="_on_fish_body_entered"]
+[connection signal="fish_eaten" from="Node/fish5" to="." method="_on_fish_fish_eaten"]
+[connection signal="body_entered" from="tilemapcollision" to="." method="_on_tilemapcollision_body_entered"]

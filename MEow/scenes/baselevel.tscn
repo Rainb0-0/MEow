@@ -1,0 +1,37 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://scenes/fish.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scenes/spiketile.tscn" type="PackedScene" id=2]
+[ext_resource path="res://script/gamelogic.gd" type="Script" id=3]
+[ext_resource path="res://scenes/cat.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scenes/groundtile.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scenes/hud.tscn" type="PackedScene" id=6]
+
+[node name="1" type="Node2D"]
+script = ExtResource( 3 )
+
+[node name="cat" parent="." instance=ExtResource( 4 )]
+position = Vector2( 248, 376 )
+jumpp = -250
+
+[node name="floor" parent="." instance=ExtResource( 5 )]
+
+[node name="hud" parent="." instance=ExtResource( 6 )]
+
+[node name="Node" type="Node" parent="."]
+
+[node name="fish" parent="Node" instance=ExtResource( 1 )]
+position = Vector2( 288, 376 )
+
+[node name="pausechecknode" type="Node" parent="."]
+
+[node name="levelcompletedchecknode" type="Node" parent="."]
+
+[node name="tilemapcollision" type="Area2D" parent="."]
+
+[node name="spike" parent="tilemapcollision" instance=ExtResource( 2 )]
+collision_use_parent = true
+
+[connection signal="body_entered" from="Node/fish" to="Node/fish" method="_on_fish_body_entered"]
+[connection signal="fish_eaten" from="Node/fish" to="." method="_on_fish_fish_eaten"]
+[connection signal="body_entered" from="tilemapcollision" to="." method="_on_tilemapcollision_body_entered"]

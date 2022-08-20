@@ -1,0 +1,61 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://font/Ubuntu-Regular.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://font/font.tres" type="DynamicFont" id=2]
+[ext_resource path="res://scenes/theme.tres" type="Theme" id=3]
+[ext_resource path="res://script/levelcompleted.gd" type="Script" id=4]
+
+[sub_resource type="DynamicFont" id=2]
+size = 32
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=1]
+size = 64
+font_data = ExtResource( 1 )
+
+[node name="levelcompleted" type="CanvasLayer"]
+script = ExtResource( 4 )
+
+[node name="VBoxContainer" type="HBoxContainer" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -320.0
+margin_top = -52.0
+margin_right = 320.0
+margin_bottom = 28.0
+
+[node name="titlemenubutton" type="Button" parent="VBoxContainer"]
+pause_mode = 2
+margin_right = 318.0
+margin_bottom = 80.0
+size_flags_horizontal = 3
+theme = ExtResource( 3 )
+custom_fonts/font = ExtResource( 2 )
+text = "Leave MEow alone :("
+
+[node name="nextlevelbutton" type="Button" parent="VBoxContainer"]
+pause_mode = 2
+margin_left = 322.0
+margin_right = 640.0
+margin_bottom = 80.0
+size_flags_horizontal = 3
+theme = ExtResource( 3 )
+custom_fonts/font = SubResource( 2 )
+text = "Next level"
+
+[node name="levelcompletedtext" type="Label" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -285.0
+margin_top = -164.0
+margin_right = 285.0
+margin_bottom = -91.0
+custom_fonts/font = SubResource( 1 )
+text = "Yay MEow is happy!"
+
+[connection signal="pressed" from="VBoxContainer/titlemenubutton" to="." method="_on_titlemenubutton_pressed"]
+[connection signal="pressed" from="VBoxContainer/nextlevelbutton" to="." method="_on_nextlevelbutton_pressed"]
